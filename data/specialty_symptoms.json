@@ -1,0 +1,90 @@
+{
+  "Kardiologija": [
+    "bol u grudima",
+    "palpitacije",
+    "otežano disanje",
+    "visok pritisak",
+    "umor",
+    "vrtoglavica",
+    "bol u lijevoj ruci",
+    "znojenje",
+    "ubrzan puls"
+  ],
+  "Neurologija": [
+    "jaka glavobolja",
+    "migrena",
+    "vrtoglavica",
+    "trnci u rukama",
+    "gubitak pamćenja",
+    "nesanica",
+    "tremor ruku",
+    "smetnje govora",
+    "slabost mišića"
+  ],
+  "Pulmologija": [
+    "suhi kašalj",
+    "otežano disanje",
+    "piskanje pri disanju",
+    "bol u grudima",
+    "iskašljavanje",
+    "bronhitis",
+    "astma napadi",
+    "kratkoća daha",
+    "hronični kašalj"
+  ],
+  "Gastroenterologija": [
+    "bol u stomaku",
+    "mučnina",
+    "povraćanje",
+    "proljev",
+    "zatvor",
+    "nadutost",
+    "žgaravica",
+    "gubitak apetita",
+    "krv u stolici"
+  ],
+  "Endokrinologija": [
+    "umor",
+    "debljanje",
+    "mrsavljenje",
+    "prekomjerna žeđ",
+    "učestalo mokrenje",
+    "prekomjerno znojenje",
+    "intolerancijahlada",
+    "gubitak kose",
+    "suha koža"
+  ],
+  "Ortopedija": [
+    "bol u leđima",
+    "bol u zglobovima",
+    "otok zgloba",
+    "ukočenost",
+    "bol u kolenu",
+    "bol u kuku",
+    "bol u ramenu",
+    "smanjeni obim pokreta",
+    "krčanje u zglobu"
+  ],
+  "Dermatologija": [
+    "osip na koži",
+    "svrbež",
+    "akne",
+    "crvena koža",
+    "plikovi",
+    "gubitak kose",
+    "suha koža",
+    "ekcem",
+    "promjena boje kože"
+  ],
+  "Psihijatrija": [
+    "anksioznost",
+    "depresija",
+    "nesanica",
+    "napadi panike",
+    "hronični stres",
+    "promjene raspoloženja",
+    "socijalna izolacija",
+    "gubitak motivacije",
+    "razdražljivost"
+  ]
+}

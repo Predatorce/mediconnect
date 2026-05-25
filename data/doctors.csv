@@ -1,0 +1,9 @@
+doctor_id,name,specialty,success_rate,avg_wait_days,experience_years,rating
+1,Dr. Amira Kovačević,Kardiologija,94,3,18,4.8
+2,Dr. Nemanja Perić,Neurologija,91,5,14,4.6
+3,Dr. Jelena Marić,Pulmologija,88,2,11,4.5
+4,Dr. Stefan Đorđević,Gastroenterologija,92,4,16,4.7
+5,Dr. Milica Stanić,Endokrinologija,89,7,12,4.4
+6,Dr. Aleksandar Tomić,Ortopedija,96,6,22,4.9
+7,Dr. Ivana Lazović,Dermatologija,87,1,9,4.3
+8,Dr. Bojan Nikolić,Psihijatrija,85,8,15,4.2
