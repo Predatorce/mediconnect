@@ -15,7 +15,7 @@ st.set_page_config(
     page_title="MediConnect",
     page_icon="⚕️",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 st.markdown("""
@@ -23,33 +23,30 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 * { font-family: 'Inter', sans-serif !important; box-sizing: border-box; }
 
+/* Sakri sidebar i njegovo dugme potpuno */
+[data-testid="stSidebar"] { display: none !important; }
+[data-testid="collapsedControl"] { display: none !important; }
+section[data-testid="stSidebarContent"] { display: none !important; }
+
 .stApp { background-color: #F0F4F8 !important; }
+.main .block-container { padding: 0 2rem 2rem 2rem !important; max-width: 1200px !important; }
 
-[data-testid="stSidebar"] {
-    background: #FFFFFF !important;
-    border-right: 1px solid #E2E8F0 !important;
-    box-shadow: 2px 0 12px rgba(0,0,0,0.05) !important;
-}
-[data-testid="stSidebar"] > div { padding-top: 0 !important; }
-.main .block-container { padding: 2rem 2.5rem !important; max-width: 1200px !important; }
-
-[data-testid="stSidebar"] .stRadio > div { gap: 2px !important; }
-[data-testid="stSidebar"] .stRadio label {
-    background: transparent !important;
-    color: #4A5568 !important;
-    padding: 11px 16px !important;
-    border-radius: 10px !important;
-    font-size: 0.88rem !important;
-    font-weight: 500 !important;
-    cursor: pointer !important;
-    transition: all 0.15s !important;
-    display: block !important;
-}
-[data-testid="stSidebar"] .stRadio label:hover {
-    background: #F0FDF9 !important;
-    color: #0D9488 !important;
+/* Navigacija na vrhu */
+.topnav {
+    background: #FFFFFF;
+    border-bottom: 1px solid #E2E8F0;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 0 -2rem 2rem -2rem;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
+/* Kartice */
 .wcard {
     background: #FFFFFF;
     border: 1px solid #E2E8F0;
@@ -71,13 +68,10 @@ st.markdown("""
 .ptitle { font-size: 1.6rem; font-weight: 800; color: #0F172A; margin-bottom: 4px; }
 .psub   { font-size: 0.88rem; color: #64748B; margin-bottom: 22px; }
 
+/* Inputi */
 .stTextArea textarea {
     background: #FFFFFF !important; border: 1.5px solid #CBD5E1 !important;
     border-radius: 12px !important; color: #0F172A !important; font-size: 0.9rem !important;
-}
-.stTextArea textarea:focus {
-    border-color: #0D9488 !important;
-    box-shadow: 0 0 0 3px rgba(13,148,136,0.12) !important;
 }
 .stMultiSelect > div > div {
     background: #FFFFFF !important; border: 1.5px solid #CBD5E1 !important; border-radius: 12px !important;
@@ -86,6 +80,8 @@ st.markdown("""
     background-color: #CCFBF1 !important; color: #0F766E !important;
     border: 1px solid #99F6E4 !important; border-radius: 6px !important; font-weight: 600 !important;
 }
+
+/* Dugme */
 .stButton > button[kind="primary"] {
     background: linear-gradient(135deg, #0D9488 0%, #0284C7 100%) !important;
     color: white !important; border: none !important; border-radius: 12px !important;
@@ -125,74 +121,30 @@ with open("data/specialty_symptoms.json", encoding="utf-8") as f:
 all_symptoms = sorted(set(s for lst in specialty_symptoms.values() for s in lst))
 
 
-# ── Sidebar ───────────────────────────────────────────────────────────────────
-with st.sidebar:
-    st.markdown("""
-    <div style="padding:24px 20px 18px; border-bottom:1px solid #F1F5F9;">
-        <div style="display:flex;align-items:center;gap:12px;">
-            <div style="width:42px;height:42px;background:linear-gradient(135deg,#0D9488,#0284C7);
-                        border-radius:11px;display:flex;align-items:center;justify-content:center;
-                        font-size:22px;flex-shrink:0;">⚕️</div>
-            <div>
-                <div style="font-size:1.05rem;font-weight:800;color:#0F172A;">MediConnect</div>
-                <div style="font-size:0.68rem;color:#0D9488;font-weight:700;letter-spacing:0.05em;">DATA MINING · FIST</div>
-            </div>
+# ── Navigacija na vrhu ────────────────────────────────────────────────────────
+st.markdown("""
+<div class="topnav">
+    <div style="display:flex;align-items:center;gap:10px;padding:14px 24px 14px 0;
+                border-right:1px solid #F1F5F9;margin-right:16px;">
+        <div style="width:36px;height:36px;background:linear-gradient(135deg,#0D9488,#0284C7);
+                    border-radius:9px;display:flex;align-items:center;justify-content:center;
+                    font-size:18px;">⚕️</div>
+        <div>
+            <div style="font-size:0.95rem;font-weight:800;color:#0F172A;line-height:1.1;">MediConnect</div>
+            <div style="font-size:0.6rem;color:#0D9488;font-weight:700;letter-spacing:0.05em;">DATA MINING · FIST</div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
 
-    st.markdown("<div style='padding:14px 12px 6px;font-size:0.68rem;font-weight:700;color:#94A3B8;letter-spacing:0.1em;text-transform:uppercase;'>NAVIGACIJA</div>", unsafe_allow_html=True)
-
-    # session_state fix - meni uvijek radi cak i kad se sidebar zatvori i otvori
-    if "page" not in st.session_state:
-        st.session_state.page = "🔍  Pretraga i preporuka"
-
-    page = st.radio(
-        "Odabir stranice",
-        [
-            "🔍  Pretraga i preporuka",
-            "📊  Dashboard",
-            "⚡  What-if Simulator",
-            "📋  Baza pacijenata",
-        ],
-        key="page",
-        label_visibility="collapsed"
-    )
-
-    st.markdown("""
-    <div style="margin:16px 12px 0;padding:14px;background:#F0FDF9;border-radius:12px;border:1px solid #CCFBF1;">
-        <div style="font-size:0.68rem;font-weight:700;color:#0F766E;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">ML Stack</div>
-        <div style="font-size:0.8rem;color:#374151;line-height:2.1;">
-            📐 TF-IDF Vektorizacija<br>
-            🔎 KNN (k=5, cosine)<br>
-            📏 Cosine Similarity<br>
-            ⚡ Model rizika<br>
-            📊 Plotly grafici
-        </div>
-    </div>
-    <div style="margin:10px 12px 0;padding:14px;background:#F8FAFC;border-radius:12px;border:1px solid #E2E8F0;">
-        <div style="font-size:0.68rem;font-weight:700;color:#64748B;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Podaci</div>
-        <div style="font-size:0.8rem;color:#374151;line-height:2.1;">
-            👥 500 pacijenata<br>
-            🏥 8 specijalizacija<br>
-            🩺 72 simptoma
-        </div>
-    </div>
-    <div style="margin:16px 12px 0;padding:10px 14px;background:#F8FAFC;border-radius:10px;border:1px solid #E2E8F0;">
-        <div style="font-size:0.72rem;color:#94A3B8;line-height:1.8;">
-            👨‍🎓 <b style="color:#334155">Andrej Zajovic</b><br>
-            📝 Indeks: <b style="color:#334155">22/096</b><br>
-            🎓 FIST · Data Mining
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
+# Navigacioni tabovi — uvijek vidljivi, ne mogu se zatvoriti
+pages = ["🔍 Pretraga", "📊 Dashboard", "⚡ What-if", "📋 Baza pacijenata"]
+selected = st.tabs(pages)
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# PAGE 1 — PRETRAGA
+# TAB 1 — PRETRAGA
 # ═══════════════════════════════════════════════════════════════════════════════
-if page == "🔍  Pretraga i preporuka":
-
+with selected[0]:
     st.markdown('<div class="ptitle">🔍 Preporuka doktora i termina</div>', unsafe_allow_html=True)
     st.markdown('<div class="psub">Unesite simptome — KNN algoritam pronalazi najboljeg specijaliste iz baze od 500 pacijenata.</div>', unsafe_allow_html=True)
 
@@ -201,16 +153,13 @@ if page == "🔍  Pretraga i preporuka":
     with col1:
         st.markdown("##### 🩺 Odaberite simptome")
         selected_symptoms = st.multiselect(
-            "simptomi",
-            options=all_symptoms,
+            "simptomi", options=all_symptoms,
             placeholder="Pocnite kucati simptom...",
             label_visibility="collapsed"
         )
         st.markdown("##### ✍️ Ili opisite slobodnim tekstom")
         free_text = st.text_area(
-            "tekst",
-            height=95,
-            label_visibility="collapsed",
+            "tekst", height=95, label_visibility="collapsed",
             placeholder="npr. Imam jak bol u grudima i otezano disanje vec 3 dana..."
         )
     with col2:
@@ -331,21 +280,21 @@ if page == "🔍  Pretraga i preporuka":
             )
 
             with st.expander("Kako je izracunat Match Score?"):
-                st.code("""
-score = 0.45 x similarity    # Cosine Similarity simptoma vs. baza pacijenata
-      + 0.25 x success_rate  # stopa uspjesnog lijecenja doktora
-      + 0.15 x wait_penalty  # inverzno proporcionalno vremenu cekanja
-      + 0.10 x experience    # normalizovane godine iskustva doktora
-      + 0.05 x urgency       # korekcija za hitnost slucaja
-                """, language="python")
-                st.info("Napomena: U produkcijskoj verziji koristili bismo Sentence-Transformers embeddings i FAISS index za pretragu.")
+                st.markdown("""
+                | Komponenta | Tezina | Opis |
+                |---|---|---|
+                | Cosine Similarity | 45% | Slicnost simptoma sa bazom pacijenata |
+                | Stopa uspjeha | 25% | Uspjesnost lijecenja doktora |
+                | Penalizacija cekanja | 15% | Krace cekanje = visi skor |
+                | Iskustvo doktora | 10% | Normalizovane godine iskustva |
+                | Korekcija hitnosti | 5% | Prilagodba za hitne slucajeve |
+                """)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# PAGE 2 — DASHBOARD
+# TAB 2 — DASHBOARD
 # ═══════════════════════════════════════════════════════════════════════════════
-elif page == "📊  Dashboard":
-
+with selected[1]:
     st.markdown('<div class="ptitle">📊 Dashboard</div>', unsafe_allow_html=True)
     st.markdown('<div class="psub">Statistike sistema, distribucije pacijenata i performanse modela.</div>', unsafe_allow_html=True)
 
@@ -378,7 +327,8 @@ elif page == "📊  Dashboard":
         ))
         fig.update_layout(
             plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
-            height=300, margin=dict(l=0, r=40, t=10, b=10), font=dict(color='#64748B'),
+            height=300, margin=dict(l=0, r=40, t=10, b=10),
+            font=dict(color='#64748B'),
             xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
             yaxis=dict(showgrid=False, tickfont=dict(color='#334155', size=11)),
         )
@@ -418,8 +368,9 @@ elif page == "📊  Dashboard":
         ))
         fig3.update_layout(
             plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
-            height=290, margin=dict(l=10, r=10, t=10, b=80), font=dict(color='#64748B'),
-            xaxis=dict(tickangle=-35, tickfont=dict(size=10, color='#334155'), showgrid=False),
+            height=290, margin=dict(l=10, r=10, t=10, b=80),
+            font=dict(color='#64748B'),
+            xaxis=dict(tickangle=-35, tickfont=dict(color='#334155', size=10), showgrid=False),
             yaxis=dict(range=[70, 100], showgrid=True, gridcolor='rgba(0,0,0,0.05)'),
         )
         st.plotly_chart(fig3, use_container_width=True)
@@ -438,8 +389,9 @@ elif page == "📊  Dashboard":
         ))
         fig4.update_layout(
             plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
-            height=290, margin=dict(l=10, r=10, t=10, b=40), font=dict(color='#64748B'),
-            xaxis=dict(tickfont=dict(size=13, color='#334155'), showgrid=False),
+            height=290, margin=dict(l=10, r=10, t=10, b=40),
+            font=dict(color='#64748B'),
+            xaxis=dict(tickfont=dict(color='#334155', size=13), showgrid=False),
             yaxis=dict(showgrid=True, gridcolor='rgba(0,0,0,0.05)'),
         )
         st.plotly_chart(fig4, use_container_width=True)
@@ -459,10 +411,9 @@ elif page == "📊  Dashboard":
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# PAGE 3 — WHAT-IF
+# TAB 3 — WHAT-IF
 # ═══════════════════════════════════════════════════════════════════════════════
-elif page == "⚡  What-if Simulator":
-
+with selected[2]:
     st.markdown('<div class="ptitle">⚡ What-if Simulator</div>', unsafe_allow_html=True)
     st.markdown('<div class="psub">Analizirajte kako odlaganje posjete ljekaru povecava rizik pogorsanja zdravstvenog stanja.</div>', unsafe_allow_html=True)
 
@@ -470,8 +421,7 @@ elif page == "⚡  What-if Simulator":
     c1, c2 = st.columns([2, 1], gap="large")
     with c1:
         wi_symp = st.multiselect(
-            "Simptomi za analizu",
-            options=all_symptoms,
+            "Simptomi za analizu", options=all_symptoms,
             default=["bol u grudima", "otezano disanje"]
         )
     with c2:
@@ -505,7 +455,8 @@ elif page == "⚡  What-if Simulator":
             ))
             fig_g.update_layout(
                 plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
-                height=255, margin=dict(l=20, r=20, t=30, b=10), font=dict(color="#64748B")
+                height=255, margin=dict(l=20, r=20, t=30, b=10),
+                font=dict(color="#64748B")
             )
             st.plotly_chart(fig_g, use_container_width=True)
             st.markdown(f"""<div style="text-align:center;background:{rbg};border-radius:10px;
@@ -519,16 +470,20 @@ elif page == "⚡  What-if Simulator":
             fig_sc = go.Figure(go.Bar(
                 x=s_labels, y=s_risks,
                 marker=dict(color=s_cols, opacity=0.85),
-                text=[f"{r}%" for r in s_risks], textposition='outside',
-                textfont=dict(color='#334155', size=14, family='Inter')
+                text=[f"{r}%" for r in s_risks],
+                textposition='outside',
+                textfont=dict(color='#334155', size=14)
             ))
             fig_sc.update_layout(
-                plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
-                height=255, margin=dict(l=10, r=10, t=30, b=30), font=dict(color='#64748B'),
+                plot_bgcolor='rgba(0,0,0,0)',
+                paper_bgcolor='rgba(0,0,0,0)',
+                height=255,
+                margin=dict(l=10, r=10, t=50, b=30),
+                font=dict(color='#64748B'),
+                title=dict(text="Rizik pogorsanja po scenariju", font=dict(color='#334155', size=13), x=0.5),
                 yaxis=dict(range=[0, 110], showgrid=True, gridcolor='rgba(0,0,0,0.05)',
-                           title="Rizik (%)", titlefont=dict(color='#94A3B8')),
+                           title_text="Rizik (%)", title_font=dict(color='#94A3B8')),
                 xaxis=dict(tickfont=dict(size=13, color='#334155'), showgrid=False),
-                title=dict(text="Rizik pogorsanja po scenariju", font=dict(color='#334155', size=13), x=0.5)
             )
             st.plotly_chart(fig_sc, use_container_width=True)
 
@@ -545,15 +500,16 @@ elif page == "⚡  What-if Simulator":
 
         m1, m2, m3 = st.columns(3, gap="medium")
         for col, val, lbl, vc, vbg in [
-            (m1, f"{crisk}%",    f"Rizik za +{cdays} dana",  cc,   cbg),
+            (m1, f"{crisk}%",    f"Rizik za +{cdays} dana", cc, cbg),
             (m2, f"+{inc:.1f}%", "Porast rizika",
-             "#DC2626" if inc > 0 else "#059669", "#FEE2E2" if inc > 0 else "#D1FAE5"),
-            (m3, adv,            "Preporuka",                ac,   abg),
+             "#DC2626" if inc > 0 else "#059669",
+             "#FEE2E2" if inc > 0 else "#D1FAE5"),
+            (m3, adv, "Preporuka", ac, abg),
         ]:
             with col:
                 st.markdown(f"""
                 <div style="background:{vbg};border-radius:14px;padding:20px 16px;text-align:center;
-                            border:1px solid {vc}25;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+                            border:1px solid {vc}25;">
                     <div style="font-size:1.85rem;font-weight:800;color:{vc};font-family:monospace;line-height:1.1;">{val}</div>
                     <div style="font-size:0.7rem;color:{vc};text-transform:uppercase;letter-spacing:0.07em;
                                 font-weight:700;margin-top:5px;opacity:0.8;">{lbl}</div>
@@ -571,10 +527,9 @@ elif page == "⚡  What-if Simulator":
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# PAGE 4 — BAZA
+# TAB 4 — BAZA
 # ═══════════════════════════════════════════════════════════════════════════════
-elif page == "📋  Baza pacijenata":
-
+with selected[3]:
     st.markdown('<div class="ptitle">📋 Baza pacijenata</div>', unsafe_allow_html=True)
     st.markdown('<div class="psub">Simulirani dataset od 500 pacijenata — pretrazivanje i filtriranje po svim parametrima.</div>', unsafe_allow_html=True)
 
