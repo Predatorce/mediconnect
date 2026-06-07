@@ -422,7 +422,7 @@ with selected[2]:
     with c1:
         wi_symp = st.multiselect(
             "Simptomi za analizu", options=all_symptoms,
-            default=["bol u grudima", "otezano disanje"]
+            placeholder="Odaberite simptome..."
         )
     with c2:
         wi_age = st.slider("Starost", 18, 85, 50)
