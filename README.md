@@ -113,42 +113,9 @@ gdje je:
 
 > **Produkciona ekstenzija** bi koristila: `sentence-transformers` (multilingual-MiniLM-L6-v2) + `FAISS` (IndexFlatIP) za embedding pretragu u realnom vremenu.
 
----
 
-## 📦 Instalacija i pokretanje
 
-### Lokalno
 
-```bash
-# 1. Klonirajte repozitorijum
-git clone https://github.com/YOUR_USERNAME/mediconnect-ai.git
-cd mediconnect-ai
-
-# 2. Kreirajte virtuelno okruženje
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate    # Windows
-
-# 3. Instalirajte zavisnosti
-pip install -r requirements.txt
-
-# 4. Generišite dataset i trenirajte model
-python data/generate_dataset.py
-python ml_engine.py
-
-# 5. Pokrenite aplikaciju
-streamlit run app.py
-```
-
-### Deploy na Streamlit Cloud (besplatno)
-
-1. Push projekat na GitHub
-2. Idite na [share.streamlit.io](https://share.streamlit.io)
-3. Kliknite **New app** → odaberite repozitorijum
-4. Main file path: `app.py`
-5. **Deploy!** 🚀
-
----
 
 ## 📁 Struktura projekta
 
@@ -198,10 +165,7 @@ Simulirani dataset generisan za akademske svrhe (u skladu sa opisom projekta: *"
 ---
 
 ## 👤 Autor
-
-**[Vaše Ime]**  
-Student · Kurs: Mašinsko učenje  
-Odbrana: 15. jun 2026.
+Andrej Zajović 22/096 FIST
 
 ---
 
